@@ -1,0 +1,6 @@
+{
+  "connect": "CareOnline",
+  "test": "OK",
+  "mode": "XAPI",
+  "odbc": "DRIVER={iSeries Access ODBC Driver}; SYSTEM=53.101.245.6; PORT=446; PROTOCOL=TCPIP; "
+}

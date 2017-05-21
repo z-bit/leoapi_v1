@@ -1,0 +1,65 @@
+/login/{fa}/{pnr}:
+get:
+    summary: Login über Personalnummer
+    description: |
+    Standardanmeldung für Monteure, keine besonderen Berechtigungen, <b>token </b>gültig für 5 Minuten gerechnet von der letzten API-Anforderung
+    parameters:
+    - name: fa
+        in: path
+        description: Firma in Care, 2 Zeichen
+        required: true
+        type: string
+    - name: pnr
+        in: path
+        description: Personalnummer, max. 6 Zeichen
+        required: true
+        type: string
+    tags:
+    - Anmeldung
+    responses:
+    200:
+        description: Benutzerinformationen
+        schema:
+        $ref: '../swagger.yaml/definitions/Benutzer'
+    400:
+        description: API-Fehlermeldung
+        schema:
+        $ref: '../swagger.yaml/definitions/Error'
+    default:
+        description: unerwartete Fehlermeldung
+        schema:
+        $ref: '../swagger.yaml/definitions/Error'
+
+/login:
+put:
+    summary: Login mittels Care-Benutzer und Passwort
+    description: |
+    Anmeldung für Personen mit besonderen Berechtigungen, gültig für 2 Stunden gerechnet von der letzten API-Anforderung
+    parameters:
+    - name: benutzer
+        description: Der iSeries-Benutzername, z.B. aspscxx
+        required: true
+        type: string
+    - name: passwort
+        description: Das zugehörige Passwort für die iSeries-Anmeldung, case-sensitive!
+        required: true
+        type: string
+    - name: fa
+        description: Firma
+        required: true
+        type: string
+    tags:
+    - Anmeldung
+    responses:
+    200:
+        description: Benutzerinformationen
+        schema:
+        $ref: '../swagger.yaml/definitions/Benutzer'
+    400:
+        description: API-Fehlermeldung
+        schema:
+        $ref: '../swagger.yaml/definitions/Error'
+    default:
+        description: unerwartete Fehlermeldung
+        schema:
+        $ref: '../swagger.yaml/definitions/Error'
